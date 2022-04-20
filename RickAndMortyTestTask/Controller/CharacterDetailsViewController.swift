@@ -8,7 +8,6 @@
 import UIKit
 import SnapKit
 import Kingfisher
-import SkeletonView
 
 final class CharacterDetailsViewController: UIViewController {
     private var avatarImageView = UIImageView()
@@ -63,7 +62,6 @@ final class CharacterDetailsViewController: UIViewController {
         // configure avatarImageView
         scrollView.addSubview(avatarImageView)
         avatarImageView.backgroundColor = .lightGray
-        
         avatarImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(30)
             make.centerX.equalToSuperview()

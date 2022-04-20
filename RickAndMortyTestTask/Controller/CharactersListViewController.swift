@@ -8,7 +8,6 @@
 import UIKit
 import SnapKit
 import Kingfisher
-import SkeletonView
 
 final class CharactersListViewController: UIViewController {
     private var tableView = UITableView()
