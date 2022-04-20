@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Kingfisher
+import SkeletonView
 
 final class CharacterDetailsViewController: UIViewController {
     private var avatarImageView = UIImageView()
@@ -27,6 +28,14 @@ final class CharacterDetailsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         configureViews()
+        
+        avatarImageView.isSkeletonable = true
+        locationLabel.isSkeletonable = true
+        nameLabel.isSkeletonable = true
+        stackView.isSkeletonable = true
+        scrollView.isSkeletonable = true
+        scrollView.showSkeleton(transition: .crossDissolve(0.25))
+        
         apiManager.getDetailInfo(id: characterID) { [weak self] character in
             self?.setData(character: character)
         }
@@ -43,7 +52,10 @@ final class CharacterDetailsViewController: UIViewController {
     }
     
     private func setData(character: CharacterForDetailScreen) {
-        avatarImageView.kf.setImage(with: URL(string: character.image))
+        avatarImageView.kf.setImage(
+            with: URL(string: character.image)) { [weak self] _ in
+                self?.scrollView.hideSkeleton(transition: .crossDissolve(0.25))
+            }
         nameLabel.text = character.name
         locationLabel.text = character.location.name
         speciesLabel.text = "Species: \(character.species)"
@@ -61,7 +73,7 @@ final class CharacterDetailsViewController: UIViewController {
         
         // configure avatarImageView
         scrollView.addSubview(avatarImageView)
-        avatarImageView.backgroundColor = .lightGray
+//        avatarImageView.backgroundColor = .lightGray
         avatarImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(30)
             make.centerX.equalToSuperview()
@@ -71,6 +83,7 @@ final class CharacterDetailsViewController: UIViewController {
         }
         
         // configure nameLabel
+        nameLabel.text = "text"
         nameLabel.font = UIFont.boldSystemFont(ofSize: 25)
         nameLabel.textColor = .black
         nameLabel.numberOfLines = 0
@@ -83,8 +96,9 @@ final class CharacterDetailsViewController: UIViewController {
         }
         
         // configure locationLabel
+        locationLabel.text = "text"
         locationLabel.font = UIFont.systemFont(ofSize: 15)
-        locationLabel.textColor = .lightGray
+//        locationLabel.textColor = .lightGray
         locationLabel.numberOfLines = 0
         locationLabel.textAlignment = .center
         scrollView.addSubview(locationLabel)
@@ -95,21 +109,25 @@ final class CharacterDetailsViewController: UIViewController {
         }
         
         // configure speciesLabel
+        speciesLabel.text = "text"
         speciesLabel.font = UIFont.systemFont(ofSize: 17)
         speciesLabel.textColor = .black
         speciesLabel.numberOfLines = 0
 
         // configure genderLabel
+        genderLabel.text = "text"
         genderLabel.font = UIFont.systemFont(ofSize: 17)
         genderLabel.textColor = .black
         genderLabel.numberOfLines = 0
 
         // configure statusLabel
+        statusLabel.text = "text"
         statusLabel.font = UIFont.systemFont(ofSize: 17)
         statusLabel.textColor = .black
         statusLabel.numberOfLines = 0
 
         // configure episodesLabel
+        episodesLabel.text = "text"
         episodesLabel.font = UIFont.systemFont(ofSize: 17)
         episodesLabel.textColor = .black
         episodesLabel.numberOfLines = 0

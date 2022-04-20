@@ -42,7 +42,7 @@ final class CharacterCell: UITableViewCell {
             make.height.equalTo(50)
             make.width.equalTo(avatarImageView.snp.height)
         }
-        avatarImageView.backgroundColor = .lightGray
+        avatarImageView.backgroundColor = .clouds
         
         // configure nameLabel
         nameLabel.font = UIFont.boldSystemFont(ofSize: 15)

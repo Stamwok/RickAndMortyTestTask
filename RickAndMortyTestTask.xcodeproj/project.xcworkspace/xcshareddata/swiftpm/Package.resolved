@@ -20,6 +20,15 @@
         }
       },
       {
+        "package": "SkeletonView",
+        "repositoryURL": "https://github.com/Juanpe/SkeletonView.git",
+        "state": {
+          "branch": "main",
+          "revision": "2eaf72ed0e04784c381e7bce1a051a6c131f1d71",
+          "version": null
+        }
+      },
+      {
         "package": "SnapKit",
         "repositoryURL": "https://github.com/SnapKit/SnapKit.git",
         "state": {
