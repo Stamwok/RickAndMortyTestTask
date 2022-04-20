@@ -98,7 +98,7 @@ final class CharacterDetailsViewController: UIViewController {
         // configure locationLabel
         locationLabel.text = "text"
         locationLabel.font = UIFont.systemFont(ofSize: 15)
-//        locationLabel.textColor = .lightGray
+        locationLabel.textColor = .lightGray
         locationLabel.numberOfLines = 0
         locationLabel.textAlignment = .center
         scrollView.addSubview(locationLabel)
