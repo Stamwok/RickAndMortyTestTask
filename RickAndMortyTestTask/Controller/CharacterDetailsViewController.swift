@@ -28,7 +28,7 @@ final class CharacterDetailsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         configureViews()
-        
+        view.layoutIfNeeded()
         avatarImageView.isSkeletonable = true
         locationLabel.isSkeletonable = true
         nameLabel.isSkeletonable = true
@@ -73,7 +73,6 @@ final class CharacterDetailsViewController: UIViewController {
         
         // configure avatarImageView
         scrollView.addSubview(avatarImageView)
-//        avatarImageView.backgroundColor = .lightGray
         avatarImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(30)
             make.centerX.equalToSuperview()

@@ -87,7 +87,6 @@ final class CharacterCell: UITableViewCell {
     
     func downloadImageForCell(avatar: String?) {
         if let urlString = avatar, let url = URL(string: urlString) {
-//            KingfisherManager.shared.downloader.downloadTimeout = 600
             let processor = DownsamplingImageProcessor(size: avatarImageView.bounds.size)
             avatarImageView.kf.setImage(
                 with: url,
