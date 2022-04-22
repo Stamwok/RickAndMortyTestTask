@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 
 protocol ApiProtocol {
+    var isLastPage: Bool { get set }
     func getDetailInfo(id: Int, completionHandler: @escaping (CharacterForDetailScreen) -> Void)
     func getCharactersList(nextPage: Bool, completionHandler: @escaping ([CharacterForList]) -> Void)
 }
@@ -18,6 +19,7 @@ final class RickAndMortyApi: ApiProtocol {
     private var nextCharactersPage: String?
     private var currentCharactersPage = "https://rickandmortyapi.com/api/character"
     private var loadingInProgress = false
+    var isLastPage = false
     
     struct ResponseForCharactersList: Decodable {
         let info: Result<PageInfo, DecodingError>
@@ -43,10 +45,10 @@ final class RickAndMortyApi: ApiProtocol {
     
     func getCharactersList(nextPage: Bool, completionHandler: @escaping ([CharacterForList]) -> Void) {
         guard loadingInProgress == false else { return }
-        
         if let nextCharactersPage = nextCharactersPage, nextPage {
             currentCharactersPage = nextCharactersPage
         }
+        
         let header: HTTPHeaders = ["Content-Type": contentType]
         loadingInProgress = true
         AF.request(
@@ -58,6 +60,9 @@ final class RickAndMortyApi: ApiProtocol {
             case .success(let data):
                 let resultList = data.results.compactMap { $0.value }
                 self?.nextCharactersPage = data.info.value?.next
+                if self?.nextCharactersPage == nil {
+                    self?.isLastPage = true
+                }
                 completionHandler(resultList)
                 self?.loadingInProgress = false
             case .failure(let error):

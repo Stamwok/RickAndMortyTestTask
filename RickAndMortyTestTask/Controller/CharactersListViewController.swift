@@ -73,7 +73,7 @@ extension CharactersListViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         (cell as? CharacterCell)?.downloadImageForCell(avatar: dataSource[indexPath.row].image)
         
-        if tableView.isLastCell(indexPath: indexPath) {
+        if tableView.isLastCell(indexPath: indexPath), apiManager.isLastPage == false {
             tableView.tableFooterView = getSpinnerFooterView()
             apiManager.getCharactersList(nextPage: true) { [weak self] charactersList in
                 self?.dataSource.append(contentsOf: charactersList)
