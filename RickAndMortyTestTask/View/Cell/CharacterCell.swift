@@ -46,16 +46,9 @@ final class CharacterCell: UITableViewCell, Configurable {
     private func configureViews() {
         // configure imageView
         contentView.addSubview(avatarImageView)
-//        avatarImageView.snp.makeConstraints { make in
-//            make.left.equalToSuperview().inset(5)
-//            make.centerY.equalToSuperview()
-//            make.height.equalTo(50)
-//            make.width.equalTo(avatarImageView.snp.height)
-//        }
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             avatarImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
-//            avatarImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
             avatarImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             avatarImageView.heightAnchor.constraint(equalToConstant: 50),
             avatarImageView.widthAnchor.constraint(equalToConstant: 50)
@@ -67,15 +60,10 @@ final class CharacterCell: UITableViewCell, Configurable {
         nameLabel.textColor = .black
         nameLabel.numberOfLines = 0
         contentView.addSubview(nameLabel)
-//        nameLabel.snp.makeConstraints { make in
-//            make.left.equalTo(avatarImageView.snp.right).offset(5)
-//            make.top.equalToSuperview().inset(5)
-//            make.right.equalToSuperview().inset(5)
-//        }
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             nameLabel.leftAnchor.constraint(equalTo: avatarImageView.rightAnchor, constant: 5),
-            nameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 5),
+            nameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -5),
             nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5)
         ])
         
@@ -84,11 +72,6 @@ final class CharacterCell: UITableViewCell, Configurable {
         speciesLabel.textColor = .lightGray
         speciesLabel.numberOfLines = 1
         contentView.addSubview(speciesLabel)
-//        speciesLabel.snp.makeConstraints { make in
-//            make.left.equalTo(avatarImageView.snp.right).offset(5)
-//            make.right.equalToSuperview().inset(5)
-//            make.top.equalTo(nameLabel.snp.bottom).offset(5)
-//        }
         speciesLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             speciesLabel.leftAnchor.constraint(equalTo: avatarImageView.rightAnchor, constant: 5),
@@ -101,16 +84,10 @@ final class CharacterCell: UITableViewCell, Configurable {
         genderLabel.textColor = .lightGray
         genderLabel.numberOfLines = 1
         contentView.addSubview(genderLabel)
-//        genderLabel.snp.makeConstraints { make in
-//            make.left.equalTo(avatarImageView.snp.right).offset(5)
-//            make.right.equalToSuperview().inset(5)
-//            make.top.equalTo(speciesLabel.snp.bottom).offset(5)
-//            make.bottom.equalToSuperview().inset(5)
-//        }
         genderLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             genderLabel.leftAnchor.constraint(equalTo: avatarImageView.rightAnchor, constant: 5),
-            genderLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 5),
+            genderLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -5),
             genderLabel.topAnchor.constraint(equalTo: speciesLabel.bottomAnchor, constant: 5),
             genderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5)
         ])
