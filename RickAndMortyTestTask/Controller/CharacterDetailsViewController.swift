@@ -6,20 +6,20 @@
 //
 
 import UIKit
-import SnapKit
 import Kingfisher
 import SkeletonView
 
 final class CharacterDetailsViewController: UIViewController {
-    private var avatarImageView = UIImageView()
-    private var nameLabel = UILabel()
-    private var speciesLabel = UILabel()
-    private var genderLabel = UILabel()
-    private var statusLabel = UILabel()
-    private var locationLabel = UILabel()
-    private var episodesLabel = UILabel()
-    private var scrollView = UIScrollView()
-    private var stackView = UIStackView()
+    private let avatarImageView = UIImageView()
+    private let nameLabel = UILabel()
+    private let speciesLabel = UILabel()
+    private let genderLabel = UILabel()
+    private let statusLabel = UILabel()
+    private let locationLabel = UILabel()
+    private let episodesLabel = UILabel()
+    private let scrollView = UIScrollView()
+    private let stackView = UIStackView()
+    private let contentView = UIView()
     
     private var characterID: Int
     private var apiManager: ApiProtocol
@@ -33,8 +33,8 @@ final class CharacterDetailsViewController: UIViewController {
         locationLabel.isSkeletonable = true
         nameLabel.isSkeletonable = true
         stackView.isSkeletonable = true
-        scrollView.isSkeletonable = true
-        scrollView.showSkeleton(transition: .crossDissolve(0.25))
+        contentView.isSkeletonable = true
+        contentView.showSkeleton()
         
         apiManager.getDetailInfo(id: characterID) { [weak self] character in
             self?.setData(character: character)
@@ -53,46 +53,60 @@ final class CharacterDetailsViewController: UIViewController {
     
     private func setData(character: CharacterForDetailScreen) {
         avatarImageView.kf.setImage(
-            with: URL(string: character.image)) { [weak self] _ in
-                self?.scrollView.hideSkeleton(transition: .crossDissolve(0.25))
+            with: URL(string: character.image ?? "")) { [weak self] _ in
+                self?.contentView.hideSkeleton()
             }
         nameLabel.text = character.name
-        locationLabel.text = character.location.name
-        speciesLabel.text = "Species: \(character.species)"
-        genderLabel.text = "Gender: \(character.gender)"
-        statusLabel.text = "Status: \(character.status)"
-        episodesLabel.text = "Episodes: \(character.episode.count)"
+        locationLabel.text = character.location?.name
+        speciesLabel.text = "Species: \(character.species ?? "")"
+        genderLabel.text = "Gender: \(character.gender ?? "")"
+        statusLabel.text = "Status: \(character.status ?? "")"
+        episodesLabel.text = "Episodes: \(character.episode?.count ?? 0)"
     }
     
     private func configureViews() {
         // configure scrollView
         view.addSubview(scrollView)
-        scrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            scrollView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        scrollView.addSubview(contentView)
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            contentView.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
+            contentView.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+        ])
         
         // configure avatarImageView
-        scrollView.addSubview(avatarImageView)
-        avatarImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(30)
-            make.centerX.equalToSuperview()
-            make.right.equalToSuperview().inset(30)
-            make.left.equalToSuperview().inset(30)
-            make.height.equalTo(avatarImageView.snp.width)
-        }
-        
+        contentView.addSubview(avatarImageView)
+        avatarImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            avatarImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 30),
+            avatarImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -30),
+            avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30),
+            avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor)
+        ])
+
         // configure nameLabel
         nameLabel.text = "text"
         nameLabel.font = UIFont.boldSystemFont(ofSize: 25)
         nameLabel.textColor = .black
         nameLabel.numberOfLines = 0
         nameLabel.textAlignment = .center
-        scrollView.addSubview(nameLabel)
-        nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(avatarImageView.snp.bottom).offset(10)
-            make.left.equalTo(avatarImageView)
-            make.right.equalTo(avatarImageView)
-        }
+        contentView.addSubview(nameLabel)
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nameLabel.leftAnchor.constraint(equalTo: avatarImageView.leftAnchor),
+            nameLabel.rightAnchor.constraint(equalTo: avatarImageView.rightAnchor),
+            nameLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 10)
+        ])
         
         // configure locationLabel
         locationLabel.text = "text"
@@ -100,12 +114,13 @@ final class CharacterDetailsViewController: UIViewController {
         locationLabel.textColor = .lightGray
         locationLabel.numberOfLines = 0
         locationLabel.textAlignment = .center
-        scrollView.addSubview(locationLabel)
-        locationLabel.snp.makeConstraints { make in
-            make.top.equalTo(nameLabel.snp.bottom).offset(10)
-            make.left.equalTo(avatarImageView)
-            make.right.equalTo(avatarImageView)
-        }
+        contentView.addSubview(locationLabel)
+        locationLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            locationLabel.leftAnchor.constraint(equalTo: avatarImageView.leftAnchor),
+            locationLabel.rightAnchor.constraint(equalTo: avatarImageView.rightAnchor),
+            locationLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10)
+        ])
         
         // configure speciesLabel
         speciesLabel.text = "text"
@@ -134,13 +149,14 @@ final class CharacterDetailsViewController: UIViewController {
         // configure stackView
         stackView.axis = .vertical
         stackView.contentMode = .left
-        scrollView.addSubview(stackView)
-        stackView.snp.makeConstraints { make in
-            make.top.equalTo(locationLabel.snp.bottom).offset(15)
-            make.left.equalTo(avatarImageView)
-            make.right.equalTo(avatarImageView)
-            make.bottom.equalTo(10)
-        }
+        contentView.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            stackView.leftAnchor.constraint(equalTo: avatarImageView.leftAnchor),
+            stackView.rightAnchor.constraint(equalTo: avatarImageView.rightAnchor),
+            stackView.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 15),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+        ])
         stackView.addArrangedSubview(speciesLabel)
         stackView.addArrangedSubview(genderLabel)
         stackView.addArrangedSubview(statusLabel)

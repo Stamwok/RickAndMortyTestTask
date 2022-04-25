@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "CollectionAndTableViewCompatible",
+        "repositoryURL": "https://github.com/jayway/CollectionAndTableViewCompatible",
+        "state": {
+          "branch": null,
+          "revision": "3545373ac2871497976226ab2a66c759a15b2089",
+          "version": "0.2.5"
+        }
+      },
+      {
         "package": "Kingfisher",
         "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
         "state": {
@@ -20,21 +29,21 @@
         }
       },
       {
+        "package": "ObjectMapper",
+        "repositoryURL": "https://github.com/tristanhimmelman/ObjectMapper.git",
+        "state": {
+          "branch": null,
+          "revision": "0b96a734de3ea1c87374ae677064f86adb0716ec",
+          "version": "4.2.0"
+        }
+      },
+      {
         "package": "SkeletonView",
         "repositoryURL": "https://github.com/Juanpe/SkeletonView.git",
         "state": {
           "branch": "main",
           "revision": "2eaf72ed0e04784c381e7bce1a051a6c131f1d71",
           "version": null
-        }
-      },
-      {
-        "package": "SnapKit",
-        "repositoryURL": "https://github.com/SnapKit/SnapKit.git",
-        "state": {
-          "branch": null,
-          "revision": "d458564516e5676af9c70b4f4b2a9178294f1bc6",
-          "version": "5.0.1"
         }
       }
     ]

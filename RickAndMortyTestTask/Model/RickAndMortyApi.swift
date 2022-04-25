@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import ObjectMapper
 
 protocol ApiProtocol {
     var isLastPage: Bool { get set }
@@ -21,9 +22,16 @@ final class RickAndMortyApi: ApiProtocol {
     private var loadingInProgress = false
     var isLastPage = false
     
-    struct ResponseForCharactersList: Decodable {
-        let info: Result<PageInfo, DecodingError>
-        let results: [Result<CharacterForList, DecodingError>]
+    struct ResponseForCharactersList: Mappable {
+        var info: PageInfo?
+        var results: [CharacterForList]?
+        
+        init?(map: Map) {}
+        
+        mutating func mapping(map: Map) {
+            info <- map["info"]
+            results <- map["results"]
+        }
     }
     
     func getDetailInfo(id: Int, completionHandler: @escaping (CharacterForDetailScreen) -> Void) {
@@ -33,9 +41,10 @@ final class RickAndMortyApi: ApiProtocol {
             url,
             method: .get,
             headers: header
-        ).responseDecodable(of: CharacterForDetailScreen.self) { response in
+        ).responseString { response in
             switch response.result {
-            case .success(let data):
+            case .success(let JSONdata):
+                guard let data = CharacterForDetailScreen(JSONString: JSONdata) else { return }
                 completionHandler(data)
             case .failure(let error):
                 print(error)
@@ -55,14 +64,17 @@ final class RickAndMortyApi: ApiProtocol {
             currentCharactersPage,
             method: .get,
             headers: header
-        ).responseDecodable(of: ResponseForCharactersList.self) { [weak self] response in
+        ).responseString { [weak self] response in
             switch response.result {
-            case .success(let data):
-                let resultList = data.results.compactMap { $0.value }
-                self?.nextCharactersPage = data.info.value?.next
+            case .success(let JSONdata):
+                guard let data = ResponseForCharactersList(JSONString: JSONdata),
+                      let resultList = data.results else { return }
+                self?.nextCharactersPage = data.info?.next
+                
                 if self?.nextCharactersPage == nil {
                     self?.isLastPage = true
                 }
+                
                 completionHandler(resultList)
                 self?.loadingInProgress = false
             case .failure(let error):

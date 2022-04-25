@@ -6,10 +6,20 @@
 //
 
 import Foundation
+import ObjectMapper
 
-struct PageInfo: Codable {
-    var count: Int
-    var pages: Int
+struct PageInfo: Mappable {
+    var count: Int?
+    var pages: Int?
     var next: String?
     var prev: String?
+    
+    init?(map: Map) {}
+    
+    mutating func mapping(map: Map) {
+        count <- map["count"]
+        pages <- map["pages"]
+        next <- map["next"]
+        prev <- map["prev"]
+    }
 }
