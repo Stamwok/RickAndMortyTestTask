@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CollectionAndTableViewCompatible",
+        "repositoryURL": "https://github.com/jayway/CollectionAndTableViewCompatible",
+        "state": {
+          "branch": "master",
+          "revision": "a5ae1c3696752bcb52df9d5e7d4ebfee2c69483f",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
