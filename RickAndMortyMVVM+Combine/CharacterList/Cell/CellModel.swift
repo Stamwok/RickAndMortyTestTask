@@ -11,12 +11,11 @@ import UIKit
 import Combine
 
 final class CellModel: TableViewCompatible {
-    private var subscriptions = Set<AnyCancellable>()
-    
-    let avatar = CurrentValueSubject<UIImage, Never>(UIImage())
-    let name = CurrentValueSubject<String, Never>("")
-    let species = CurrentValueSubject<String, Never>("")
-    let gender = CurrentValueSubject<String, Never>("")
+
+    let avatar: String
+    let name: String
+    let species: String
+    let gender: String
     
     private let character: CharacterForList
     
@@ -25,22 +24,10 @@ final class CellModel: TableViewCompatible {
     
     init(character: CharacterForList) {
         self.character = character
-        self.name.send(self.character.name)
-        self.species.send(self.character.species)
-        self.gender.send(self.character.gender)
-        RickAndMortyApi().downloadImage(url: character.image)
-            .sink( receiveCompletion: { result in
-                switch result {
-                case .failure(let error):
-                    print(error)
-                default:
-                    break
-                }
-            }, receiveValue: { [weak self] image in
-                guard let self = self else { return }
-                self.avatar.send(image)
-            })
-            .store(in: &subscriptions)
+        self.avatar = character.image
+        self.name = character.name
+        self.species = character.species
+        self.gender = character.species
     }
     
     func cellForTableView(tableView: UITableView, atIndexPath indexPath: IndexPath) -> UITableViewCell {

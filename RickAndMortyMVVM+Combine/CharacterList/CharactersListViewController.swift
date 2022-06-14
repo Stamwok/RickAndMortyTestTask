@@ -13,12 +13,12 @@ class CharactersListViewController: UIViewController {
     private var subscriptions = Set<AnyCancellable>()
     private let viewModel: CharactersListViewModel
     private var dataSource: CellDataSource?
+    private var characters: [CharacterForList] = []
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.register(CharacterCell.self, forCellReuseIdentifier: CharacterCell.reuseID)
         tableView.delegate = self
         tableView.backgroundColor = .white
-        tableView.dataSource = dataSource
-        tableView.register(CharacterCell.self, forCellReuseIdentifier: CharacterCell.reuseID)
         return tableView
     }()
     
@@ -31,27 +31,52 @@ class CharactersListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        subscriptions.removeAll()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
         configureDataSource()
+        viewModel.sendEvent(event: .onAppear)
+        
         setLayout()
+        setBinding()
+    }
+    
+    private func setBinding() {
+        viewModel.state
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                switch state{
+                case .finished(let characters):
+                    self?.characters.append(contentsOf: characters)
+                    for character in characters {
+                        self?.dataSource?.data.append(CellModel(character: character))
+                    }
+                    self?.tableView.tableFooterView = nil
+                    self?.viewModel.state.send(.ready)
+                case .inProcess:
+                    self?.tableView.tableFooterView = self?.getSpinnerFooterView()
+                case .loadedLastPage(let characters):
+                    self?.characters.append(contentsOf: characters)
+                    for character in characters {
+                        self?.dataSource?.data.append(CellModel(character: character))
+                    }
+                    self?.tableView.tableFooterView = nil
+                case .showsCharacterInfo(let vc):
+                    self?.present(vc, animated: true)
+                default:
+                    break
+                }
+            }
+            .store(in: &subscriptions)
     }
     
     private func configureDataSource() {
         dataSource = CellDataSource(tableView: tableView)
-        viewModel.charactersList
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] updateData in
-                guard let self = self else { return }
-                
-                var snapshot = NSDiffableDataSourceSnapshot<Section, CharacterForList>()
-                snapshot.appendSections([.main])
-                snapshot.appendItems(updateData)
-                self.dataSource?.apply(snapshot)
-            }
-            .store(in: &subscriptions)
+        tableView.dataSource = dataSource
     }
     
     private func setLayout() {
@@ -69,34 +94,15 @@ class CharactersListViewController: UIViewController {
 extension CharactersListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.isSelected = false
-        let characterId = viewModel.charactersList.value[indexPath.row].id
-        let vc = CharacterInfoViewController(viewModel: CharacterInfoViewModel(characterId: characterId))
-        present(vc, animated: true)
+        let characterId = characters[indexPath.row].id
+        viewModel.sendEvent(event: .didSelectCharacter(id: characterId))
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-            viewModel.process
-                .receive(on: DispatchQueue.main)
-                .sink { process in
-                    switch process {
-                    case .ready:
-                        if tableView.isLastCell(indexPath: indexPath) {
-                            tableView.tableFooterView = self.getSpinnerFooterView()
-                            let loadedPage = self.viewModel.loadedPage
-                            self.viewModel.fetchCharactersList(page: loadedPage + 1)
-                            self.viewModel.loadedPage += 1
-                        }
-                    case .finished:
-                        self.tableView.tableFooterView = nil
-                    case .finishedWithEmptyResult:
-                        self.tableView.tableFooterView = nil
-                    default:
-                        break
-                    }
-                }
-                .store(in: &subscriptions)
+        if tableView.isLastCell(indexPath: indexPath) {
+            viewModel.sendEvent(event: .listIsEnded)
         }
+    }
     
     private func getSpinnerFooterView() -> UIView {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 100))

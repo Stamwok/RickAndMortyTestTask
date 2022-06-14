@@ -7,19 +7,26 @@
 
 import Foundation
 import UIKit
+import CollectionAndTableViewCompatible
 
-enum Section: Int, CaseIterable {
-    case main
-}
-
-class CellDataSource: UITableViewDiffableDataSource<Section, CharacterForList> {
+class CellDataSource: NSObject, UITableViewDataSource {
     private var tableView: UITableView?
+    var data = [TableViewCompatible]() {
+        didSet {
+            tableView?.reloadData()
+        }
+    }
     
     init(tableView: UITableView) {
         self.tableView = tableView
-        super.init(tableView: tableView) { tableView, indexPath, source in
-            let model = CellModel(character: source)
-            return model.cellForTableView(tableView: tableView, atIndexPath: indexPath)
-        }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let model = data[indexPath.row]
+        return model.cellForTableView(tableView: tableView, atIndexPath: indexPath)
     }
 }

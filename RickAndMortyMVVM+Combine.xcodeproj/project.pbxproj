@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0436C79C2859063900C95CF2 /* CollectionAndTableViewCompatible in Frameworks */ = {isa = PBXBuildFile; productRef = 0436C79B2859063900C95CF2 /* CollectionAndTableViewCompatible */; };
+		0436C7A828593FAA00C95CF2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0436C7A728593FAA00C95CF2 /* Kingfisher */; };
 		043E99D0285237D200EF176E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E99CF285237D200EF176E /* AppDelegate.swift */; };
 		043E99D2285237D200EF176E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E99D1285237D200EF176E /* SceneDelegate.swift */; };
 		043E99D9285237D900EF176E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 043E99D8285237D900EF176E /* Assets.xcassets */; };
@@ -15,13 +17,10 @@
 		043E99E82852389200EF176E /* CharactersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E99E72852389200EF176E /* CharactersListViewController.swift */; };
 		043E99EB2852438300EF176E /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E99EA2852438300EF176E /* Character.swift */; };
 		043E99ED2852453400EF176E /* ResponseForCharactersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E99EC2852453400EF176E /* ResponseForCharactersList.swift */; };
-		043E99EF28524B7900EF176E /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E99EE28524B7900EF176E /* CacheManager.swift */; };
 		043E99F22852507700EF176E /* CharactersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E99F12852507700EF176E /* CharactersListViewModel.swift */; };
 		043E99F5285256B300EF176E /* CellDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E99F3285256B300EF176E /* CellDataSource.swift */; };
 		043E99F6285256B300EF176E /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E99F4285256B300EF176E /* CellModel.swift */; };
 		043E99F82852570B00EF176E /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E99F72852570B00EF176E /* CharacterCell.swift */; };
-		043E99FB2852573B00EF176E /* CollectionAndTableViewCompatible in Frameworks */ = {isa = PBXBuildFile; productRef = 043E99FA2852573B00EF176E /* CollectionAndTableViewCompatible */; };
-		043E9A0028533CF200EF176E /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E99FF28533CF100EF176E /* Process.swift */; };
 		043E9A0228537A1500EF176E /* UITableView+isLastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E9A0128537A1500EF176E /* UITableView+isLastCell.swift */; };
 		043E9A052853A53E00EF176E /* CharacterInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E9A042853A53E00EF176E /* CharacterInfoViewController.swift */; };
 		043E9A072853A57E00EF176E /* CharacterInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E9A062853A57E00EF176E /* CharacterInfoViewModel.swift */; };
@@ -38,12 +37,10 @@
 		043E99E72852389200EF176E /* CharactersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersListViewController.swift; sourceTree = "<group>"; };
 		043E99EA2852438300EF176E /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		043E99EC2852453400EF176E /* ResponseForCharactersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseForCharactersList.swift; sourceTree = "<group>"; };
-		043E99EE28524B7900EF176E /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		043E99F12852507700EF176E /* CharactersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersListViewModel.swift; sourceTree = "<group>"; };
 		043E99F3285256B300EF176E /* CellDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellDataSource.swift; sourceTree = "<group>"; };
 		043E99F4285256B300EF176E /* CellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
 		043E99F72852570B00EF176E /* CharacterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
-		043E99FF28533CF100EF176E /* Process.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Process.swift; sourceTree = "<group>"; };
 		043E9A0128537A1500EF176E /* UITableView+isLastCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+isLastCell.swift"; sourceTree = "<group>"; };
 		043E9A042853A53E00EF176E /* CharacterInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInfoViewController.swift; sourceTree = "<group>"; };
 		043E9A062853A57E00EF176E /* CharacterInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInfoViewModel.swift; sourceTree = "<group>"; };
@@ -54,7 +51,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				043E99FB2852573B00EF176E /* CollectionAndTableViewCompatible in Frameworks */,
+				0436C7A828593FAA00C95CF2 /* Kingfisher in Frameworks */,
+				0436C79C2859063900C95CF2 /* CollectionAndTableViewCompatible in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,9 +95,9 @@
 		043E99E32852382600EF176E /* CharacterList */ = {
 			isa = PBXGroup;
 			children = (
-				043E99F02852504C00EF176E /* Cell */,
-				043E99E72852389200EF176E /* CharactersListViewController.swift */,
 				043E99F12852507700EF176E /* CharactersListViewModel.swift */,
+				043E99E72852389200EF176E /* CharactersListViewController.swift */,
+				043E99F02852504C00EF176E /* Cell */,
 			);
 			path = CharacterList;
 			sourceTree = "<group>";
@@ -117,7 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				043E99EA2852438300EF176E /* Character.swift */,
-				043E99EE28524B7900EF176E /* CacheManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -136,7 +133,6 @@
 			isa = PBXGroup;
 			children = (
 				043E9A0128537A1500EF176E /* UITableView+isLastCell.swift */,
-				043E99FF28533CF100EF176E /* Process.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -167,7 +163,8 @@
 			);
 			name = "RickAndMortyMVVM+Combine";
 			packageProductDependencies = (
-				043E99FA2852573B00EF176E /* CollectionAndTableViewCompatible */,
+				0436C79B2859063900C95CF2 /* CollectionAndTableViewCompatible */,
+				0436C7A728593FAA00C95CF2 /* Kingfisher */,
 			);
 			productName = "RickAndMortyMVVM+Combine";
 			productReference = 043E99CC285237D200EF176E /* RickAndMortyMVVM+Combine.app */;
@@ -198,7 +195,8 @@
 			);
 			mainGroup = 043E99C3285237D200EF176E;
 			packageReferences = (
-				043E99F92852573B00EF176E /* XCRemoteSwiftPackageReference "CollectionAndTableViewCompatible" */,
+				0436C79A2859063900C95CF2 /* XCRemoteSwiftPackageReference "CollectionAndTableViewCompatible" */,
+				0436C7A628593FAA00C95CF2 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 043E99CD285237D200EF176E /* Products */;
 			projectDirPath = "";
@@ -239,8 +237,6 @@
 				043E99E62852385A00EF176E /* RickAndMortyApi.swift in Sources */,
 				043E9A072853A57E00EF176E /* CharacterInfoViewModel.swift in Sources */,
 				043E99D2285237D200EF176E /* SceneDelegate.swift in Sources */,
-				043E99EF28524B7900EF176E /* CacheManager.swift in Sources */,
-				043E9A0028533CF200EF176E /* Process.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,9 +450,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		043E99F92852573B00EF176E /* XCRemoteSwiftPackageReference "CollectionAndTableViewCompatible" */ = {
+		0436C79A2859063900C95CF2 /* XCRemoteSwiftPackageReference "CollectionAndTableViewCompatible" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jayway/CollectionAndTableViewCompatible";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		0436C7A628593FAA00C95CF2 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
 				branch = master;
 				kind = branch;
@@ -465,10 +469,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		043E99FA2852573B00EF176E /* CollectionAndTableViewCompatible */ = {
+		0436C79B2859063900C95CF2 /* CollectionAndTableViewCompatible */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 043E99F92852573B00EF176E /* XCRemoteSwiftPackageReference "CollectionAndTableViewCompatible" */;
+			package = 0436C79A2859063900C95CF2 /* XCRemoteSwiftPackageReference "CollectionAndTableViewCompatible" */;
 			productName = CollectionAndTableViewCompatible;
+		};
+		0436C7A728593FAA00C95CF2 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0436C7A628593FAA00C95CF2 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -8,6 +8,7 @@
 import UIKit
 import CollectionAndTableViewCompatible
 import Combine
+import Kingfisher
 
 final class CharacterCell: UITableViewCell, Configurable {
     static let reuseID = String(describing: CharacterCell.self)
@@ -18,7 +19,6 @@ final class CharacterCell: UITableViewCell, Configurable {
     private var genderLabel = UILabel()
     
     var model: CellModel?
-    private var subscriptions = Set<AnyCancellable>()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -38,41 +38,12 @@ final class CharacterCell: UITableViewCell, Configurable {
     
     func configure(withModel model: CellModel) {
         self.model = model
-        
-        setBinding()
+        self.avatarImageView.kf.setImage(with: URL(string: model.avatar))
+        self.nameLabel.text = model.name
+        self.genderLabel.text = model.gender
+        self.speciesLabel.text = model.species
     }
     
-    private func setBinding() {
-        guard let model = model else { return }
-        model.avatar
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] image in
-                guard let self = self else { return }
-                self.avatarImageView.image = image
-            })
-            .store(in: &subscriptions)
-        model.name
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] name in
-                guard let self = self else { return }
-                self.nameLabel.text = name
-            })
-            .store(in: &subscriptions)
-        model.species
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] species in
-                guard let self = self else { return }
-                self.speciesLabel.text = species
-            })
-            .store(in: &subscriptions)
-        model.gender
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] gender in
-                guard let self = self else { return }
-                self.genderLabel.text = gender
-            })
-            .store(in: &subscriptions)
-    }
     
     private func configureViews() {
         // configure imageView
