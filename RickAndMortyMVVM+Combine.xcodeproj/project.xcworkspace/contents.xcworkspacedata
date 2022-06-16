@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/lungful/Projects/RickAndMortyTestTask-MVVM-Combain/RickAndMortyMVVM+Combine.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>

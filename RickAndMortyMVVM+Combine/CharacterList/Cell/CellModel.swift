@@ -17,7 +17,7 @@ final class CellModel: TableViewCompatible {
     let species: String
     let gender: String
     
-    private let character: CharacterForList
+    let character: CharacterForList
     
     var reuseIdentifier: String = CharacterCell.reuseID
     var selected: Bool = false

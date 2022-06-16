@@ -12,12 +12,11 @@ class CharactersListViewController: UIViewController {
     
     private var subscriptions = Set<AnyCancellable>()
     private let viewModel: CharactersListViewModel
-    private var dataSource: CellDataSource?
-    private var characters: [CharacterForList] = []
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(CharacterCell.self, forCellReuseIdentifier: CharacterCell.reuseID)
         tableView.delegate = self
+        tableView.dataSource = self
         tableView.backgroundColor = .white
         return tableView
     }()
@@ -38,7 +37,7 @@ class CharactersListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        configureDataSource()
+        title = "Characters list"
         viewModel.sendEvent(event: .onAppear)
         
         setLayout()
@@ -50,33 +49,22 @@ class CharactersListViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] state in
                 switch state{
-                case .finished(let characters):
-                    self?.characters.append(contentsOf: characters)
+                case .loaded(let characters, let hasNext):
                     for character in characters {
-                        self?.dataSource?.data.append(CellModel(character: character))
+                        self?.viewModel.data.append(CellModel(character: character))
+                        self?.tableView.reloadData()
                     }
                     self?.tableView.tableFooterView = nil
-                    self?.viewModel.state.send(.ready)
-                case .inProcess:
+                    if hasNext {
+                        self?.viewModel.state.send(.idle)
+                    }
+                case .loading:
                     self?.tableView.tableFooterView = self?.getSpinnerFooterView()
-                case .loadedLastPage(let characters):
-                    self?.characters.append(contentsOf: characters)
-                    for character in characters {
-                        self?.dataSource?.data.append(CellModel(character: character))
-                    }
-                    self?.tableView.tableFooterView = nil
-                case .showsCharacterInfo(let vc):
-                    self?.present(vc, animated: true)
                 default:
                     break
                 }
             }
             .store(in: &subscriptions)
-    }
-    
-    private func configureDataSource() {
-        dataSource = CellDataSource(tableView: tableView)
-        tableView.dataSource = dataSource
     }
     
     private func setLayout() {
@@ -94,8 +82,7 @@ class CharactersListViewController: UIViewController {
 extension CharactersListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.isSelected = false
-        let characterId = characters[indexPath.row].id
-        viewModel.sendEvent(event: .didSelectCharacter(id: characterId))
+        viewModel.sendEvent(event: .didSelectCharacter(row: indexPath.row))
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -111,5 +98,16 @@ extension CharactersListViewController: UITableViewDelegate {
         spinner.center = footerView.center
         spinner.startAnimating()
         return footerView
+    }
+}
+
+extension CharactersListViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.data.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellModel = viewModel.data[indexPath.row]
+        return cellModel.cellForTableView(tableView: tableView, atIndexPath: indexPath)
     }
 }

@@ -24,12 +24,6 @@ class CharacterInfoViewController: UIViewController {
     private let viewModel: CharacterInfoViewModel
     private var subscriptions = Set<AnyCancellable>()
     
-    var completionHandler: (() -> Void)?
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        completionHandler!()
-    }
-    
     init(viewModel: CharacterInfoViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
