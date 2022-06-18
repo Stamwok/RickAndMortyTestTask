@@ -49,15 +49,9 @@ class CharactersListViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] state in
                 switch state{
-                case .loaded(let characters, let hasNext):
-                    for character in characters {
-                        self?.viewModel.data.append(CellModel(character: character))
-                        self?.tableView.reloadData()
-                    }
+                case .loaded:
+                    self?.tableView.reloadData()
                     self?.tableView.tableFooterView = nil
-                    if hasNext {
-                        self?.viewModel.state.send(.idle)
-                    }
                 case .loading:
                     self?.tableView.tableFooterView = self?.getSpinnerFooterView()
                 default:

@@ -63,7 +63,6 @@ class RickAndMortyApi: RickAndMortyApiProtocol {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
         return URLSession.shared.dataTaskPublisher(for: request)
             .retry(3)
             .tryMap { (data, response) -> Data in

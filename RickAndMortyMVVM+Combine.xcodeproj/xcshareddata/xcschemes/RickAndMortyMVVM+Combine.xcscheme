@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "1320"
+   version = "1.3">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "043E99CB285237D200EF176E"
+               BuildableName = "RickAndMortyMVVM+Combine.app"
+               BlueprintName = "RickAndMortyMVVM+Combine"
+               ReferencedContainer = "container:RickAndMortyMVVM+Combine.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
+      <Testables>
+         <TestableReference
+            skipped = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0436C7D6285C799400C95CF2"
+               BuildableName = "RickAndMortyMVVM+CombineTests.xctest"
+               BlueprintName = "RickAndMortyMVVM+CombineTests"
+               ReferencedContainer = "container:RickAndMortyMVVM+Combine.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0436C7C3285BB64A00C95CF2"
+               BuildableName = "CharactersListViewModelTests.xctest"
+               BlueprintName = "CharactersListViewModelTests"
+               ReferencedContainer = "container:RickAndMortyMVVM+Combine.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "044ECC13285C924400542BAF"
+               BuildableName = "CharactersListTests.xctest"
+               BlueprintName = "CharactersListTests"
+               ReferencedContainer = "container:RickAndMortyMVVM+Combine.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "044ECC23285C936500542BAF"
+               BuildableName = "CharacterInfoTests.xctest"
+               BlueprintName = "CharacterInfoTests"
+               ReferencedContainer = "container:RickAndMortyMVVM+Combine.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "043E99CB285237D200EF176E"
+            BuildableName = "RickAndMortyMVVM+Combine.app"
+            BlueprintName = "RickAndMortyMVVM+Combine"
+            ReferencedContainer = "container:RickAndMortyMVVM+Combine.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "043E99CB285237D200EF176E"
+            BuildableName = "RickAndMortyMVVM+Combine.app"
+            BlueprintName = "RickAndMortyMVVM+Combine"
+            ReferencedContainer = "container:RickAndMortyMVVM+Combine.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>

@@ -14,6 +14,7 @@ class CharactersListViewModel {
     private let utilityQueue = DispatchQueue(label: "utilityQueue", qos: .utility)
     
     var data = [TableViewCompatible]()
+    private let apiService: RickAndMortyApiProtocol
     
     var showCharacterInfo: ((Int) -> Void)?
     
@@ -23,16 +24,26 @@ class CharactersListViewModel {
         case didSelectCharacter(row: Int)
     }
     
-    enum State {
+    enum State: Equatable {
+        static func == (lhs: CharactersListViewModel.State, rhs: CharactersListViewModel.State) -> Bool {
+            return lhs.rawValue == rhs.rawValue 
+        }
+        var rawValue: String? {
+            return String(describing: self).components(separatedBy: "(").first
+        }
         case idle
         case loading
-        case loaded(characters: [CharacterForList], hasNext: Bool)
+        case loaded(hasNext: Bool)
         case failedWithError(error: Error)
     }
+    
     
     private var loadedPage = 1
     let state = CurrentValueSubject<State, Never>(.idle)
     
+    init(apiService: RickAndMortyApiProtocol) {
+        self.apiService = apiService
+    }
     
     func sendEvent(event: Event) {
         switch event {
@@ -46,7 +57,7 @@ class CharactersListViewModel {
             showCharacterInfo(characterId)
         case .listIsEnded:
             switch self.state.value {
-            case .idle:
+            case .loaded(hasNext: true):
                 state.send(.loading)
                 loadedPage += 1
                 fetchCharactersList(page: loadedPage)
@@ -57,25 +68,26 @@ class CharactersListViewModel {
     }
     
     private func fetchCharactersList(page: Int) {
-        RickAndMortyApi().fetchCharactersList(page: page)
+        apiService.fetchCharactersList(page: page)
             .subscribe(on: utilityQueue)
             .sink(receiveCompletion: { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .failure(let error):
                     self.state.send(.failedWithError(error: error))
-                    break
                 default:
-                    self.state.send(.idle)
+                    break
                 }
                 self.subscriptions.removeAll()
             }, receiveValue: { [weak self] receivedValue in
                 guard let self = self else { return }
+                for character in receivedValue.results {
+                    self.data.append(CellModel(character: character))
+                }
                 if receivedValue.info.next == nil {
-                    self.state.send(.loaded(characters: receivedValue.results, hasNext: false))
-                    self.subscriptions.removeAll()
+                    self.state.send(.loaded(hasNext: false))
                 } else {
-                    self.state.send(.loaded(characters: receivedValue.results, hasNext: true))
+                    self.state.send(.loaded(hasNext: true))
                 }
             })
             .store(in: &subscriptions)

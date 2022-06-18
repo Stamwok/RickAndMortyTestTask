@@ -87,47 +87,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1BA4616C-FB04-404E-B652-41040EEC20A1"
+            uuid = "EB010C16-9D48-46EC-AC91-EE4215B69565"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RickAndMortyMVVM+Combine/CharacterList/CharactersListViewModel.swift"
+            filePath = "RickAndMortyMVVM+CombineTests/CharactersListTests/CharactersListTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "fetchCharactersList(page:)"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "testOnAppear()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C721040E-78F7-4C22-B9C6-6B8A48271426"
+            uuid = "B5AA43AA-C6F7-43D2-BD0F-E3E18716A905"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RickAndMortyMVVM+Combine/CharacterList/CharactersListViewModel.swift"
+            filePath = "RickAndMortyMVVM+CombineTests/CharactersListTests/CharactersListTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "fetchCharactersList(page:)"
-            landmarkType = "7">
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "87BF5DCB-6DFA-4B8C-91A8-FCA0DDB446F1"
+            uuid = "99FBB113-22DD-45B6-9B3B-0219F51B8FAB"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RickAndMortyMVVM+Combine/CharacterList/CharactersListViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "fetchCharactersList(page:)"
             landmarkType = "7">
          </BreakpointContent>

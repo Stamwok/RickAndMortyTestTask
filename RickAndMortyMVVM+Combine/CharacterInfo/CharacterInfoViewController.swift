@@ -40,7 +40,7 @@ class CharacterInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
+        viewModel.sendEvent(event: .onAppear)
         configureViews()
         setBinding()
     }
