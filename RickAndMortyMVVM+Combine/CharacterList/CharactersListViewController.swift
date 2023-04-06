@@ -14,7 +14,7 @@ class CharactersListViewController: UIViewController {
     private let viewModel: CharactersListViewModel
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(CharacterCell.self, forCellReuseIdentifier: CharacterCell.reuseID)
+        tableView.register(CharacterTableViewCell.self, forCellReuseIdentifier: CharacterTableViewCell.reuseID)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .white
@@ -30,25 +30,27 @@ class CharactersListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    deinit {
-        subscriptions.removeAll()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "Characters list"
-        viewModel.sendEvent(event: .onAppear)
+        viewModel.send(event: .onAppear)
         
         setLayout()
         setBinding()
     }
     
     private func setBinding() {
-        viewModel.state
+        viewModel.showCharacterInfo = { [weak self] characterId in
+            let viewModel = CharacterInfoViewModel(characterId: characterId, apiService: RickAndMortyApi())
+            let vc = CharacterInfoViewController(viewModel: viewModel)
+            self?.present(vc, animated: true)
+        }
+        
+        viewModel.$state
             .receive(on: DispatchQueue.main)
             .sink { [weak self] state in
-                switch state{
+                switch state {
                 case .loaded:
                     self?.tableView.reloadData()
                     self?.tableView.tableFooterView = nil
@@ -76,12 +78,12 @@ class CharactersListViewController: UIViewController {
 extension CharactersListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.isSelected = false
-        viewModel.sendEvent(event: .didSelectCharacter(row: indexPath.row))
+        viewModel.send(event: .didSelectCharacter(row: indexPath.row))
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if tableView.isLastCell(indexPath: indexPath) {
-            viewModel.sendEvent(event: .listIsEnded)
+            viewModel.send(event: .loadMoreCharacters)
         }
     }
     

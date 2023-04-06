@@ -10,15 +10,15 @@ import CollectionAndTableViewCompatible
 import Combine
 import Kingfisher
 
-final class CharacterCell: UITableViewCell, Configurable {
-    static let reuseID = String(describing: CharacterCell.self)
+final class CharacterTableViewCell: UITableViewCell, Configurable {
+    static let reuseID = String(describing: CharacterTableViewCell.self)
     
     private var avatarImageView = UIImageView()
     private var nameLabel = UILabel()
     private var speciesLabel = UILabel()
     private var genderLabel = UILabel()
     
-    var model: CellModel?
+    var model: CharacterTableCellModel?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -36,7 +36,7 @@ final class CharacterCell: UITableViewCell, Configurable {
         avatarImageView.clipsToBounds = true
     }
     
-    func configure(withModel model: CellModel) {
+    func configure(withModel model: CharacterTableCellModel) {
         self.model = model
         self.avatarImageView.kf.setImage(with: URL(string: model.avatar))
         self.nameLabel.text = model.name

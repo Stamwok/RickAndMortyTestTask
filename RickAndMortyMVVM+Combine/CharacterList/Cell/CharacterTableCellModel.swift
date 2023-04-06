@@ -10,7 +10,15 @@ import CollectionAndTableViewCompatible
 import UIKit
 import Combine
 
-final class CellModel: TableViewCompatible {
+final class CharacterTableCellModel: TableViewCompatible, Equatable {
+    static func == (lhs: CharacterTableCellModel, rhs: CharacterTableCellModel) -> Bool {
+        return lhs.avatar == rhs.avatar &&
+        lhs.name == rhs.name &&
+        lhs.species == rhs.species &&
+        lhs.gender == rhs.gender &&
+        lhs.character == rhs.character
+    }
+    
 
     let avatar: String
     let name: String
@@ -19,7 +27,7 @@ final class CellModel: TableViewCompatible {
     
     let character: CharacterForList
     
-    var reuseIdentifier: String = CharacterCell.reuseID
+    var reuseIdentifier: String = CharacterTableViewCell.reuseID
     var selected: Bool = false
     
     init(character: CharacterForList) {
@@ -31,7 +39,7 @@ final class CellModel: TableViewCompatible {
     }
     
     func cellForTableView(tableView: UITableView, atIndexPath indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CharacterCell.reuseID, for: indexPath) as? CharacterCell else { fatalError("wrong cell") }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CharacterTableViewCell.reuseID, for: indexPath) as? CharacterTableViewCell else { fatalError("wrong cell") }
         cell.configure(withModel: self)
         return cell
     }

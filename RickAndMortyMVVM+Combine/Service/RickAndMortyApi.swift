@@ -22,7 +22,6 @@ class RickAndMortyApi: RickAndMortyApiProtocol {
         urlComponents.host = "rickandmortyapi.com"
         return urlComponents
     }
-    private var nextCharactersPage: String?
     
     func fetchCharactersList(page: Int) -> AnyPublisher<ResponseForCharactersList, Error> {
         
@@ -45,9 +44,6 @@ class RickAndMortyApi: RickAndMortyApiProtocol {
                 guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
                     throw URLError(.badServerResponse)
                 }
-//                if let string = String(data: data, encoding: .utf8) {
-//                    print(string)
-//                }
                 return data
             }
             .decode(type: ResponseForCharactersList.self, decoder: JSONDecoder())
@@ -69,9 +65,6 @@ class RickAndMortyApi: RickAndMortyApiProtocol {
                 guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
                     throw URLError(.badServerResponse)
                 }
-//                if let string = String(data: data, encoding: .utf8) {
-//                    print(string)
-//                }
                 return data
             }
             .decode(type: CharacterInfo.self, decoder: JSONDecoder())

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CharacterForList: Decodable {
+struct CharacterForList: Decodable, Equatable {
     var id: Int
     var name: String
     var species: String
@@ -15,7 +15,7 @@ struct CharacterForList: Decodable {
     var image: String
 }
 
-struct CharacterInfo: Decodable {
+struct CharacterInfo: Decodable, Equatable {
     var id: Int
     var name: String
     var species: String
@@ -26,17 +26,17 @@ struct CharacterInfo: Decodable {
     var episode: [String]
 }
 
-struct Location: Decodable {
+struct Location: Decodable, Equatable {
     var name: String
     var url: String
 }
 
-extension CharacterForList: Hashable {
-    func hash(into hasher: inout Hasher) {
-        return hasher.combine(id)
-    }
-    
-    static func == (lhs: CharacterForList, rhs: CharacterForList) -> Bool {
-        return lhs.id == rhs.id
-    }
-}
+//extension CharacterForList: Hashable {
+//    func hash(into hasher: inout Hasher) {
+//        return hasher.combine(id)
+//    }
+//    
+//    static func == (lhs: CharacterForList, rhs: CharacterForList) -> Bool {
+//        return lhs.id == rhs.id
+//    }
+//}
