@@ -19,6 +19,24 @@
       }
     },
     {
+      "identity" : "needle",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/uber/needle.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "0094b81b861dcd43d5cdccfb2176b2afcee9116e"
+      }
+    },
+    {
+      "identity" : "route-composer",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ekazaev/route-composer.git",
+      "state" : {
+        "revision" : "a0245b670d4618217cee2c067d01ca50193ca889",
+        "version" : "2.10.3"
+      }
+    },
+    {
       "identity" : "swift-docc-plugin",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-docc-plugin",

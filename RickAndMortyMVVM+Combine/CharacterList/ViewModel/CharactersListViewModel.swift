@@ -16,7 +16,7 @@ class CharactersListViewModel: ObservableObject {
     private(set) var data = [CharacterTableCellModel]()
     private let apiService: RickAndMortyApiProtocol
     
-    var showCharacterInfo: ((Int) -> Void)?
+    var showCharacterInfo: ((CharacterInfoViewModel) -> Void)?
     
     enum Event {
         case onAppear
@@ -35,11 +35,12 @@ class CharactersListViewModel: ObservableObject {
     
     
     private var currentPage = 1
+    private var dependency: CharacterListComponent
     @Published private(set) var state: State = .idle
     
-    init(apiService: RickAndMortyApiProtocol) {
-        self.apiService = apiService
-        
+    init(dependency: CharacterListComponent) {
+        self.apiService = dependency.apiService
+        self.dependency = dependency
         Publishers.system(
             initial: state,
             reduce: reduce,
@@ -78,7 +79,9 @@ extension CharactersListViewModel {
                 return state
             }
         case (_, .didSelectCharacter(let row)):
-            showCharacterInfo?(self.data[row].character.id)
+            let viewModel = dependency.characterInfoComponent.getCharacterInfoViewModel(characterId: self.data[row].character.id)
+            showCharacterInfo?(viewModel)
+            
             return state
         default:
             return state

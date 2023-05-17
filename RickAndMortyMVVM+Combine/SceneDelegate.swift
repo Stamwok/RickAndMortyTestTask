@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import NeedleFoundation
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -18,13 +19,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: scene)
-//        window.rootViewController = CharactersListViewController(viewModel: CharactersListViewModel())
-        let rootFlowController = CharactersListFlowController()
-        window.rootViewController = rootFlowController
-        self.window = window
-        window.makeKeyAndVisible()
         
-        rootFlowController.start()
+        registerProviderFactories()
+        
+//        window.rootViewController = rootFlowController
+//        self.window = window
+//        window.makeKeyAndVisible()
+//
+//        rootFlowController.start()
+        
+        do {
+            try UIViewController.router.navigate(to: <#T##Destination<some Any, some Any>#>)
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

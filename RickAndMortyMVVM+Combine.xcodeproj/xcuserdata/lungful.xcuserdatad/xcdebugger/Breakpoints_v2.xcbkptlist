@@ -126,8 +126,8 @@
             filePath = "RickAndMortyMVVM+Combine/CharacterList/CharactersListViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "reduce(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -142,8 +142,8 @@
             filePath = "RickAndMortyMVVM+Combine/CharacterList/CharactersListViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "reduce(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -158,8 +158,8 @@
             filePath = "RickAndMortyMVVM+Combine/CharacterList/CharactersListViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "reduce(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -174,8 +174,8 @@
             filePath = "RickAndMortyMVVM+Combine/CharacterList/CharactersListViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "reduce(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -190,8 +190,8 @@
             filePath = "RickAndMortyMVVM+Combine/CharacterList/CharactersListViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "whenLoading()"
             landmarkType = "7">
          </BreakpointContent>
@@ -206,8 +206,8 @@
             filePath = "RickAndMortyMVVM+Combine/CharacterList/CharactersListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "setBinding()"
             landmarkType = "7">
          </BreakpointContent>
@@ -222,8 +222,8 @@
             filePath = "RickAndMortyMVVM+Combine/CharacterList/CharactersListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -238,10 +238,10 @@
             filePath = "RickAndMortyMVVM+Combine/CharacterList/CharactersListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "CharactersListViewController"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -254,10 +254,90 @@
             filePath = "RickAndMortyMVVM+Combine/CharacterList/CharactersListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
             landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DFDC167B-978A-42DE-B639-BD478D853668"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RickAndMortyMVVM+Combine/CharacterInfo/CharacterInfoViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "reduce(_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5C0A5BAF-C258-476F-AF2C-AB766C66E1A6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RickAndMortyMVVM+Combine/CharacterInfo/CharacterInfoViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "reduce(_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2310CD3E-BFF6-4D24-B116-B16C18462977"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RickAndMortyMVVM+Combine/CharacterInfo/CharacterInfoViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "whenLoading()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2310CD3E-BFF6-4D24-B116-B16C18462977 - 6b4cc20d569ffa1b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RickAndMortyMVVM_Combine.CharacterInfoViewModel.whenLoading() -&gt; RickAndMortyMVVM_Combine.Feedback&lt;RickAndMortyMVVM_Combine.CharacterInfoViewModel.State, RickAndMortyMVVM_Combine.CharacterInfoViewModel.Event&gt;"
+                  moduleName = "RickAndMortyMVVM+Combine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lungful/Projects/RickAndMortyTestTask/RickAndMortyMVVM+Combine/CharacterInfo/CharacterInfoViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "45">
+               </Location>
+               <Location
+                  uuid = "2310CD3E-BFF6-4D24-B116-B16C18462977 - ec252b33300d475d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (RickAndMortyMVVM_Combine.CharacterInfoViewModel.State) -&gt; Combine.AnyPublisher&lt;RickAndMortyMVVM_Combine.CharacterInfoViewModel.Event, Swift.Never&gt; in RickAndMortyMVVM_Combine.CharacterInfoViewModel.whenLoading() -&gt; RickAndMortyMVVM_Combine.Feedback&lt;RickAndMortyMVVM_Combine.CharacterInfoViewModel.State, RickAndMortyMVVM_Combine.CharacterInfoViewModel.Event&gt;"
+                  moduleName = "RickAndMortyMVVM+Combine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lungful/Projects/RickAndMortyTestTask/RickAndMortyMVVM+Combine/CharacterInfo/CharacterInfoViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "307">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

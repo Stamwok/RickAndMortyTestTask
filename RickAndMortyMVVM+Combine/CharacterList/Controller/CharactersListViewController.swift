@@ -7,11 +7,23 @@
 
 import UIKit
 import Combine
+import RouteComposer
+
+class CharactersListViewControllerFactory: Factory {
+    typealias ViewController = CharactersListViewController
+    
+    typealias Context = CharactersListViewModel
+    
+    func build(with viewModel: Context) throws -> CharactersListViewController {
+        let controller = CharactersListViewController()
+        controller.viewModel = viewModel
+        return controller
+    }
+}
 
 class CharactersListViewController: UIViewController {
     
     private var subscriptions = Set<AnyCancellable>()
-    private let viewModel: CharactersListViewModel
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(CharacterTableViewCell.self, forCellReuseIdentifier: CharacterTableViewCell.reuseID)
@@ -21,30 +33,35 @@ class CharactersListViewController: UIViewController {
         return tableView
     }()
     
-    init(viewModel: CharactersListViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+    var viewModel: CharactersListViewModel? {
+        didSet {
+            guard let viewModel else { return }
+            setBinding(viewModel: viewModel)
+        }
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    init(viewModel: CharactersListViewModel) {
+//        self.viewModel = viewModel
+//        super.init(nibName: nil, bundle: nil)
+//    }
+    
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "Characters list"
-        viewModel.send(event: .onAppear)
+        viewModel?.send(event: .onAppear)
         
         setLayout()
-        setBinding()
     }
     
-    private func setBinding() {
-        viewModel.showCharacterInfo = { [weak self] characterId in
-            let viewModel = CharacterInfoViewModel(characterId: characterId, apiService: RickAndMortyApi())
-            let vc = CharacterInfoViewController(viewModel: viewModel)
-            self?.present(vc, animated: true)
+    private func setBinding(viewModel: CharactersListViewModel) {
+        viewModel.showCharacterInfo = { [weak self] viewModel in
+//            router.navigate(to: StepAssembly(finder: <#T##Finder#>, factory: <#T##ContainerFactory#>))
+//            try? router.navigate(to: StepAssembly(finder: <#T##_#>, factory: <#T##_#>))
         }
         
         viewModel.$state
@@ -78,12 +95,12 @@ class CharactersListViewController: UIViewController {
 extension CharactersListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.isSelected = false
-        viewModel.send(event: .didSelectCharacter(row: indexPath.row))
+        viewModel?.send(event: .didSelectCharacter(row: indexPath.row))
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if tableView.isLastCell(indexPath: indexPath) {
-            viewModel.send(event: .loadMoreCharacters)
+            viewModel?.send(event: .loadMoreCharacters)
         }
     }
     
@@ -99,10 +116,11 @@ extension CharactersListViewController: UITableViewDelegate {
 
 extension CharactersListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.data.count
+        return viewModel?.data.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let viewModel else { return UITableViewCell() }
         let cellModel = viewModel.data[indexPath.row]
         return cellModel.cellForTableView(tableView: tableView, atIndexPath: indexPath)
     }

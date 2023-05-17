@@ -21,17 +21,22 @@ class CharacterInfoViewController: UIViewController {
     private let stackView = UIStackView()
     private let contentView = UIView()
     
-    private let viewModel: CharacterInfoViewModel
+    var viewModel: CharacterInfoViewModel? {
+        didSet {
+            guard let viewModel else { return }
+            setBinding(viewModel: viewModel)
+        }
+    }
     private var subscriptions = Set<AnyCancellable>()
     
-    init(viewModel: CharacterInfoViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    init(viewModel: CharacterInfoViewModel) {
+//        self.viewModel = viewModel
+//        super.init(nibName: nil, bundle: nil)
+//    }
+//
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
     deinit {
         subscriptions.removeAll()
@@ -40,12 +45,11 @@ class CharacterInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        viewModel.send(event: .onAppear)
+        viewModel?.send(event: .onAppear)
         configureViews()
-        setBinding()
     }
     
-    private func setBinding() {
+    private func setBinding(viewModel: CharacterInfoViewModel) {
         
         viewModel.$state
             .receive(on: DispatchQueue.main)

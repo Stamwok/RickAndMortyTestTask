@@ -15,6 +15,7 @@ class CharacterInfoViewModel: ObservableObject {
     private let input = PassthroughSubject<Event, Never>()
     private let apiService: RickAndMortyApiProtocol
     private let characterId: Int
+    private let dependency: CharacterInfoComponent
     
     enum State: Equatable {
         case idle
@@ -29,9 +30,10 @@ class CharacterInfoViewModel: ObservableObject {
         case characterLoadedWithError(Error)
     }
     
-    init(characterId: Int, apiService: RickAndMortyApiProtocol) {
-        self.apiService = apiService
+    init(characterId: Int, dependency: CharacterInfoComponent) {
+        self.apiService = dependency.apiService
         self.characterId = characterId
+        self.dependency = dependency
         Publishers.system(
             initial: state,
             reduce: reduce,
